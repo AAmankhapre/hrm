@@ -1,0 +1,822 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Slide Forge AI by KK Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1ff;--ink:#1b1740;--mute:#56527a;--at:#5a38f0;--glass:rgba(255,255,255,.72);--line:rgba(27,23,64,.15);--a:#6d4aff;--b:#00b39b;--c:#ffb020;--d:#ff5c8a;--dd:#c9307e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0a24;--ink:#f2f0ff;--mute:#b4b0e0;--at:#aa9cff;--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.16)}}
+:root[data-theme="dark"]{--bg:#0c0a24;--ink:#f2f0ff;--mute:#b4b0e0;--at:#aa9cff;--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.65 Literata,Georgia,serif;overflow-x:hidden}
+h1,h2,h3,button,.sans{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.aurora i{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(90px);opacity:.38;animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){background:var(--a);left:-12vmax;top:-10vmax}
+.aurora i:nth-child(2){background:var(--b);right:-14vmax;top:25vh;animation-delay:-8s}
+.aurora i:nth-child(3){background:var(--d);left:20vw;bottom:-22vmax;animation-delay:-15s;opacity:.28}
+.aurora:after{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:28px 28px;opacity:.6;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000,transparent 75%)}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+.progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:60;transform-origin:left;transform:scaleX(var(--sp,0));background:linear-gradient(90deg,var(--a),var(--d),var(--c))}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:50;margin:12px 0 0;display:flex;justify-content:space-between;align-items:center;padding:10px 12px 10px 22px;border-radius:999px;background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+nav b{font:800 20px "Bricolage Grotesque",sans-serif;display:flex;gap:8px;align-items:center}
+nav .links{display:flex;align-items:center;gap:4px}
+nav a{color:var(--ink);text-decoration:none;font:600 15px "Bricolage Grotesque",sans-serif;padding:9px 14px;border-radius:999px;transition:background .2s}
+nav a:hover{background:var(--line)}
+nav a.go{background:linear-gradient(120deg,var(--a),var(--dd));color:#fff}
+.tg{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:20px}
+svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+:focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;min-height:84vh;padding:30px 0 30px}
+.kick{display:inline-flex;gap:8px;align-items:center;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font:600 14px "Bricolage Grotesque",sans-serif;margin-bottom:22px}
+.kick i{width:8px;height:8px;border-radius:50%;background:var(--b);box-shadow:0 0 0 0 var(--b);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px transparent}}
+h1{font-size:clamp(44px,7.4vw,84px);line-height:.97;letter-spacing:-.04em;margin:0 0 22px;font-weight:800}
+.grad{background:linear-gradient(100deg,#6d4aff,#c9307e 55%,#d9570a);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 6s linear infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+.lede{color:var(--mute);font-size:20px;max-width:30em;margin:0 0 28px}
+.btn{display:inline-block;border:0;cursor:pointer;color:#fff;background:linear-gradient(120deg,var(--a),var(--dd));padding:15px 28px;border-radius:999px;font:700 16px "Bricolage Grotesque",sans-serif;text-decoration:none;box-shadow:0 12px 30px -10px var(--a);transition:transform .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chips span{font:600 14px "Bricolage Grotesque",sans-serif;padding:8px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--line)}
+.chips b{color:var(--at)}
+.scene{perspective:1100px;height:480px;position:relative;touch-action:pan-y}
+.stack{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(58deg + var(--ry,0deg))) rotateZ(calc(-32deg + var(--rx,0deg)));transition:transform .25s ease-out}
+.layer{position:absolute;left:50%;top:50%;width:270px;height:270px;margin:-135px 0 0 -135px;border-radius:30px;display:grid;place-items:center;color:#fff;transform:translateZ(var(--z));animation:bob 5s ease-in-out infinite;animation-delay:var(--dl);box-shadow:0 0 0 1.5px rgba(255,255,255,.35) inset,0 40px 60px -20px rgba(0,0,0,.35)}
+.layer svg{width:84px;height:84px;stroke-width:1.4}
+.layer span{position:absolute;bottom:18px;left:22px;font:700 17px "Bricolage Grotesque",sans-serif}
+.l1{--z:0px;--dl:0s;background:linear-gradient(135deg,#6d4aff,#3b2bb5)}
+.l2{--z:90px;--dl:-1.6s;background:linear-gradient(135deg,rgba(0,150,135,.92),rgba(0,100,125,.92))}
+.l3{--z:180px;--dl:-3.2s;background:linear-gradient(135deg,rgba(235,120,20,.94),rgba(214,50,110,.94))}
+@keyframes bob{50%{transform:translateZ(calc(var(--z) + 26px))}}
+.hint{position:absolute;bottom:0;width:100%;text-align:center;color:var(--mute);font:500 13px "Bricolage Grotesque",sans-serif}
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:18px 0;margin:0 -22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:mq 34s linear infinite;font:700 22px "Bricolage Grotesque",sans-serif;color:var(--mute)}
+.track span:nth-child(3n+1){color:var(--ink)}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:72px 0}
+.eb{font:700 13px "Bricolage Grotesque",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--at);margin:0 0 12px}
+h2{font-size:clamp(32px,4.8vw,54px);line-height:1.04;letter-spacing:-.035em;margin:0 0 14px;font-weight:800;max-width:17em}
+.intro{max-width:36em;color:var(--mute);margin:0 0 40px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:28px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.levers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1200px}
+.card{position:relative;padding:30px;transform-style:preserve-3d;transition:transform .2s ease-out,box-shadow .3s;will-change:transform}
+.card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),rgba(109,74,255,.22),transparent 60%)}
+.card:hover:before{opacity:1}
+.card:hover{box-shadow:0 30px 60px -25px var(--a)}
+.badge{width:84px;height:84px;border-radius:24px;display:grid;place-items:center;color:#fff;margin-bottom:18px;transform:translateZ(46px);font-size:42px;box-shadow:0 18px 30px -12px rgba(0,0,0,.4)}
+.card h3{font-size:26px;margin:0 0 2px;transform:translateZ(26px)}
+.card .tag{margin:0 0 12px;color:var(--at);font:600 15px "Bricolage Grotesque",sans-serif}
+.card p{font-size:16.5px;margin:0 0 12px}
+.card .ai{color:var(--mute);border-left:4px solid var(--c);padding-left:12px;font-size:15.5px}
+.pic{padding:clamp(20px,4vw,40px)}
+.tiles{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;margin:20px 0 26px}
+.tile{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-size:clamp(16px,3vw,28px);border:1.5px solid var(--line);color:var(--mute);transition:all .45s cubic-bezier(.3,1.5,.5,1)}
+.tile.ai{background:linear-gradient(135deg,#e8800f,var(--dd));color:#fff;border-color:transparent;transform:rotateY(180deg) scale(1.04)}
+.tile.ai svg{transform:rotateY(180deg)}
+.pic input{width:100%;accent-color:var(--a);height:32px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.stat{padding:16px;border-radius:18px;border:1px solid var(--line);text-align:center}
+.stat b{display:block;font:800 clamp(28px,5vw,46px)/1 "Bricolage Grotesque",sans-serif}
+.stat span{font-size:14px;color:var(--mute)}
+#verdict{margin:18px 0 0;font-size:17px}
+.tool{padding:clamp(18px,3vw,34px)}
+.add{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.add input{flex:1 1 240px;font:400 17px Literata,serif;padding:13px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--glass);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;gap:10px 20px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opts button{font:600 14px "Bricolage Grotesque",sans-serif;padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:all .2s}
+.opts button[aria-pressed="true"]{background:var(--a);border-color:var(--a);color:#fff;transform:scale(1.06)}
+.opts button.x{color:var(--mute)}
+.plan{margin-top:24px;padding:20px 24px;border-radius:20px;border:1px solid var(--line);background:var(--glass)}
+.plan h3{margin:0 0 6px;font-size:20px}.plan ul{margin:8px 0 0;padding-left:20px}.plan li{margin:6px 0;font-size:16.5px}
+.bar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:var(--line);margin:12px 0}
+.bar i{display:block;transition:width .5s}
+.tests{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.test{padding:24px;display:flex;gap:18px;align-items:flex-start}
+.ring{flex:none;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--col) calc(var(--p,0)*1%),var(--line) 0);position:relative}
+.ring:before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--bg)}
+.ring svg{position:relative}
+.test h3{margin:0 0 4px;font-size:21px}.test p{margin:0;color:var(--mute);font-size:16px}
+.rhythm{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.rhythm:before{content:"";position:absolute;left:8%;right:8%;top:41px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--b),var(--c),var(--d));transform:scaleX(0);transform-origin:left;transition:transform 1.6s .3s}
+.rhythm.in:before{transform:scaleX(1)}
+.rhythm li{text-align:center;position:relative}
+.rhythm .dot{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;color:#fff;font-size:36px;box-shadow:0 14px 26px -10px rgba(0,0,0,.4);transition:transform .3s}
+.rhythm li:hover .dot{transform:translateY(-8px) rotate(-6deg)}
+.rhythm b{display:block;font:800 21px "Bricolage Grotesque",sans-serif}.rhythm span{color:var(--mute);font-size:15.5px}
+.cta{position:relative;overflow:hidden;border-radius:40px;padding:clamp(40px,7vw,88px);color:#fff;background:linear-gradient(135deg,#6d4aff,#2f2398);text-align:center;margin-bottom:60px}
+.cta:before,.cta:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.55}
+.cta:before{width:320px;height:320px;background:#d63c85;left:-90px;bottom:-140px}
+.cta:after{width:280px;height:280px;background:#00b39b;right:-80px;top:-120px}
+.cta>*{position:relative}
+.cta h2{margin:0 auto 14px;color:#fff}.cta p{margin:0 auto 28px;max-width:32em;color:#e8e4ff}
+.cta .btn{background:#fff;color:#1b1740;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+footer{padding:36px 0 56px;color:var(--mute);font-size:14.5px;border-top:1px solid var(--line)}
+
+/* additions for the presentation content, built from the template's own tokens */
+.sub{margin:48px 0 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.sub h3{font-size:clamp(22px,3vw,30px);margin:0}
+.sub p{margin:0;color:var(--mute);font-size:15px}
+.poll{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;padding:16px 22px;margin-bottom:26px;border:1.5px dashed var(--line);border-radius:20px}
+.poll b{font:700 12px "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--at)}
+.names{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;border:0;padding:0}
+.names label{display:block;min-width:0;font:700 12px "Bricolage Grotesque",sans-serif}
+.names input{width:100%;min-width:0;margin-top:4px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--glass);color:var(--ink);font:400 15px Literata,serif}
+.mx{display:grid;grid-template-columns:26px 1fr 1fr;grid-template-rows:auto auto 26px;gap:10px}
+.mxy{grid-row:1/3;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;justify-content:space-between;align-items:center;color:var(--mute);font:600 13px "Bricolage Grotesque",sans-serif}
+.mxx{grid-column:2/4;display:flex;justify-content:space-between;color:var(--mute);font:600 13px "Bricolage Grotesque",sans-serif}
+.q{padding:20px;border-radius:22px;border:1px solid var(--line);min-width:0;display:flex;flex-direction:column;gap:8px;min-height:215px;background:color-mix(in srgb,var(--qc) 16%,transparent)}
+.q small{font:700 11.5px "Bricolage Grotesque",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--at)}
+.q h4{font:800 24px "Bricolage Grotesque",sans-serif;margin:0;letter-spacing:-.02em}
+.q p{margin:0;font-size:15px;color:var(--mute);line-height:1.5}
+.qo{--qc:var(--a)}.qa{--qc:var(--dd)}.qd{--qc:var(--b)}.qe{--qc:var(--mute)}
+.pl{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.pl span{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:9px;font:600 13px "Bricolage Grotesque",sans-serif;background:var(--glass);border:1px solid var(--line)}
+.pl .me{background:var(--a);color:#fff;border-color:var(--a)}
+.pl button{border:0;background:transparent;color:inherit;cursor:pointer;padding:0 2px;font-size:16px;line-height:1;min-width:24px;min-height:24px}
+.add select{padding:13px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--glass);color:var(--ink);font:600 15px "Bricolage Grotesque",sans-serif;min-width:0}
+.fine{color:var(--mute);font-size:14px;margin:12px 0 0}
+.adds{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.adds span{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--glass);font:600 15px "Bricolage Grotesque",sans-serif}
+.rule{margin:30px 0 0;font:800 clamp(22px,3.2vw,36px)/1.12 "Bricolage Grotesque",sans-serif;letter-spacing:-.025em;max-width:22em}
+.rg{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start}
+.rg>*{min-width:0}
+.map{width:100%;height:auto;display:block}
+.map .n rect{fill:var(--glass);stroke:var(--line);stroke-width:1.5}
+.map .n text{font:700 14px "Bricolage Grotesque",sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.map .ln{stroke:var(--line);stroke-width:2}
+.map .ailn{stroke:var(--b);stroke-width:2.5;stroke-dasharray:6 5}
+.map .ai rect{fill:rgba(0,179,155,.16);stroke:var(--b);stroke-dasharray:6 5;stroke-width:2}
+.map .you{fill:var(--a)}
+.map .youtx{font:800 15px "Bricolage Grotesque",sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.map .cap{font:500 12px "Bricolage Grotesque",sans-serif;fill:var(--mute);text-anchor:middle}
+.mv{padding:18px 22px;margin-bottom:12px;border-radius:20px}
+.mv:last-child{margin-bottom:0}
+.mv b{display:block;font:800 19px "Bricolage Grotesque",sans-serif;margin-bottom:2px}
+.mv span{color:var(--mute);font-size:16px}
+.sci{padding:16px 0;border-top:1px solid var(--line);display:grid;gap:10px}
+.sci:first-child{border-top:0;padding-top:0}
+.scq{font:700 18px "Bricolage Grotesque",sans-serif}
+.scf{color:var(--mute);font-size:16px;min-height:1.5em;margin:0}
+.scf b{color:var(--at)}
+.score{margin:12px 0 0;font:700 17px "Bricolage Grotesque",sans-serif}
+.risk{margin-top:26px;padding:28px 32px;border-radius:28px;color:#fff;background:linear-gradient(135deg,#2f2398,#6d4aff)}
+.risk h3{font-size:clamp(22px,3vw,32px);margin:0 0 8px}
+.risk p{margin:0;color:#e8e4ff;max-width:42em}
+.fq{font:800 clamp(24px,3.6vw,40px)/1.1 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;min-height:3.4em;margin:16px 0 8px}
+.fx{color:var(--mute);margin:0}
+.lad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end}
+.rung{padding:22px;border-radius:24px;min-width:0;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line)}
+.rung small{font:700 12px "Bricolage Grotesque",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--at)}
+.rung p{margin:0;font:800 clamp(18px,2.1vw,24px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.015em}
+.rung span{color:var(--mute);font-size:15px}
+.r1{background:color-mix(in srgb,var(--a) 8%,transparent);min-height:170px}
+.r2{background:color-mix(in srgb,var(--a) 17%,transparent);min-height:230px}
+.r3{background:color-mix(in srgb,var(--a) 30%,transparent);min-height:290px}
+.bd{display:grid;grid-template-columns:1fr 1.1fr;gap:22px}
+.bd>*{min-width:0}
+.fl{display:grid;gap:12px;align-content:start}
+.fl label{display:grid;gap:5px;font:700 13px "Bricolage Grotesque",sans-serif}
+.fl input{width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--glass);color:var(--ink);font:400 17px Literata,serif}
+.exs{display:flex;flex-wrap:wrap;gap:8px}
+.exs button{font:600 14px "Bricolage Grotesque",sans-serif;padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.stmt{border-radius:28px;padding:clamp(24px,4vw,40px);background:linear-gradient(135deg,var(--a),var(--dd));color:#fff;display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:220px}
+.stmt b{font:700 12px "Bricolage Grotesque",sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.stmt p{margin:0;font:800 clamp(22px,3.2vw,36px)/1.1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;overflow-wrap:anywhere}
+.honest{margin-top:26px;padding:20px 24px;border-left:5px solid var(--c);border-radius:0 20px 20px 0;background:var(--glass)}
+.honest p{margin:0}
+.honest p+p{margin-top:6px;color:var(--mute)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--glass)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:16px}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 12px "Bricolage Grotesque",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.qna{display:grid;gap:10px;margin-top:36px}
+.qna details{border:1px solid var(--line);border-radius:18px;background:var(--glass);padding:0 22px}
+.qna summary{padding:16px 0;font:700 17px "Bricolage Grotesque",sans-serif;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px}
+.qna summary::-webkit-details-marker{display:none}
+.qna summary:after{content:"+";font-size:22px;line-height:1;color:var(--mute)}
+.qna details[open] summary:after{content:"\2212"}
+.qna details p{margin:0;padding-bottom:18px;color:var(--mute)}
+.src{margin-top:30px;color:var(--mute);font-size:14.5px}
+.src h3{font-size:16px;color:var(--ink);margin:0 0 8px}
+.src ul{margin:0;padding-left:20px}
+
+/* ---- full screen + PPT mode ---- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+nav{cursor:default}nav a{cursor:pointer;user-select:none}.btn{cursor:pointer}
+.pbar{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:14px;padding:6px 8px;border-radius:999px;background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);font:700 14px "Bricolage Grotesque",sans-serif}
+.pbar button{width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(120deg,var(--a),var(--dd));color:#fff;font-size:20px;cursor:pointer}
+.pbar button:disabled{opacity:.35;cursor:default}
+.pbar span{min-width:54px;text-align:center}
+html.ppt,html.ppt body{height:100%;overflow:hidden}
+html.ppt .wrap{padding:0;max-width:none}
+html.ppt nav{position:fixed;left:14px;right:14px;top:calc(env(safe-area-inset-top,0px) + 10px);margin:0;z-index:65}
+html.ppt nav .links>a:not(#pptb){display:none}
+html.ppt .mq,html.ppt footer{display:none}
+html.ppt .slide{display:none;position:fixed;inset:0;margin:0;padding:92px max(clamp(20px,5vw,72px),calc((100vw - 1240px)/2)) 88px;overflow-y:auto;overflow-x:hidden;z-index:1}
+html.ppt .slide.cur{display:flex;flex-direction:column;animation:sl .45s cubic-bezier(.2,.8,.2,1)}
+html.ppt .slide>:first-child{margin-top:auto}
+html.ppt .slide>:last-child{margin-bottom:auto}
+html.ppt .hero.slide.cur{display:grid;align-content:center;min-height:0}
+html.ppt .hero.slide>*{margin:0}
+html.ppt .cta.slide{border-radius:0;margin:0;justify-content:center;background:linear-gradient(135deg,#6d4aff,#2f2398)}
+html.ppt .cta.slide.cur{display:flex;align-items:center;text-align:center}
+html.ppt .rv{opacity:1;transform:none}
+html.ppt .rhythm:before{transform:scaleX(1)}
+html.ppt h2{font-size:clamp(30px,4.2vw,56px)}
+@keyframes sl{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+
+/* ---- v3: more attractive + interactive ---- */
+.glow{position:fixed;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(109,74,255,.2),transparent 65%);left:var(--gx,50%);top:var(--gy,40%);transition:left .25s ease-out,top .25s ease-out}
+.grad{display:inline-block;transition:opacity .35s,transform .35s}.grad.out{opacity:0;transform:translateY(.3em)}
+.btn,nav a,.opts button{position:relative;overflow:hidden}
+.rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rp .6s ease-out forwards;pointer-events:none}
+@keyframes rp{to{transform:scale(4);opacity:0}}
+.card,.stat,.test,.q,.rhythm li{transition:transform .3s,box-shadow .3s}
+.stat:hover,.test:hover,.q:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px var(--a)}
+.tile:hover{transform:scale(1.18) rotate(-6deg)}
+html.ppt .slide.cur .stg{animation:up .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms)}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.dots{display:flex;gap:7px;align-items:center}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .3s}
+.dots i.on{width:26px;border-radius:6px;background:linear-gradient(90deg,var(--a),var(--d))}
+.pbar small.x{font:600 12px "Bricolage Grotesque",sans-serif;color:var(--mute);min-width:44px;text-align:center}
+.pbar .sm{width:36px;height:36px;font-size:15px;background:var(--glass);color:var(--ink);border:1px solid var(--line)}
+.ov{position:fixed;inset:0;z-index:90;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:70px clamp(18px,5vw,70px) 30px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;align-content:start}
+.ov[hidden]{display:none}
+.ov button{text-align:left;padding:18px;border-radius:20px;border:1.5px solid var(--line);background:var(--glass);color:var(--ink);cursor:pointer;font:700 17px/1.25 "Bricolage Grotesque",sans-serif;min-height:110px;transition:transform .2s,border-color .2s}
+.ov button:hover,.ov button.on{transform:translateY(-5px) rotate(-1deg);border-color:var(--a)}
+.ov small{display:block;color:var(--at);margin-bottom:8px;letter-spacing:.12em}
+.ov h4{position:fixed;top:22px;left:clamp(18px,5vw,70px);margin:0;font:800 24px "Bricolage Grotesque",sans-serif}
+.laser{position:fixed;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:#ff2d55;box-shadow:0 0 0 6px rgba(255,45,85,.3),0 0 26px 8px rgba(255,45,85,.7);pointer-events:none;z-index:99;display:none}
+html.las .laser{display:block}html.las,html.las *{cursor:none!important}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:98}
+.tip{position:fixed;left:50%;top:78px;transform:translateX(-50%);z-index:80;padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font:600 13px "Bricolage Grotesque",sans-serif;opacity:0;transition:opacity .5s;pointer-events:none}.tip.on{opacity:.92}
+
+.glg{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;margin:22px 0 18px}
+.gt{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;color:#fff;background:var(--c);font-size:clamp(16px,2.8vw,28px);animation:pop .5s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--k)*28ms);box-shadow:0 8px 16px -8px var(--c)}
+.gt:hover{transform:scale(1.15) rotate(-6deg)}
+@keyframes pop{from{transform:scale(0) rotate(-40deg);opacity:0}}
+.gbar{display:flex;height:34px;border-radius:12px;overflow:hidden;gap:3px}
+.gbar i{display:grid;place-items:center;color:#fff;font:700 13px "Bricolage Grotesque",sans-serif;background:var(--c);transition:flex-grow .7s cubic-bezier(.3,1.2,.5,1);min-width:0;overflow:hidden}
+.gleg{display:flex;flex-wrap:wrap;gap:8px 20px;margin:14px 0;font:600 14px "Bricolage Grotesque",sans-serif}
+.gleg span{display:inline-flex;align-items:center;gap:7px}.gleg i{width:14px;height:14px;border-radius:5px;background:var(--c)}
+.gbig{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.gbig span{color:var(--mute);font:600 15px "Bricolage Grotesque",sans-serif}
+.gbig b{font:800 clamp(34px,6vw,58px)/1 "Bricolage Grotesque",sans-serif;background:linear-gradient(100deg,var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
+.dn{display:flex;align-items:center;gap:18px;margin-top:18px}.dn svg{width:120px;height:120px;flex:none;color:var(--ink)}.dn p{margin:0;font-size:15px;color:var(--mute)}.dn b{color:var(--ink)}
+.test{cursor:pointer}.test.sel{outline:2.5px solid var(--a);outline-offset:3px}
+.wf{margin-top:22px}.wft{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin-bottom:12px}.wft b{font:800 clamp(24px,4vw,40px) "Bricolage Grotesque",sans-serif}.wft span{color:var(--mute)}
+.wfg{display:grid;grid-template-columns:repeat(20,1fr);gap:5px}
+.wp{aspect-ratio:1;color:var(--line);font-size:clamp(9px,1.6vw,18px);display:grid;place-items:center;transition:color .3s,transform .3s;transition-delay:calc(var(--k)*6ms)}
+.wp.on{color:var(--col);transform:scale(1.1)}.wp svg{fill:currentColor;stroke:none;width:100%;height:100%}
+
+.gpanel{position:relative;overflow:hidden;border-radius:34px;padding:clamp(20px,3.4vw,40px);border:1px solid var(--line);background:radial-gradient(520px circle at 8% 0%,rgba(109,74,255,.28),transparent 60%),radial-gradient(520px circle at 100% 100%,rgba(255,92,138,.24),transparent 60%),radial-gradient(400px circle at 90% 0%,rgba(0,179,155,.2),transparent 60%),var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 40px 80px -40px rgba(90,56,240,.55)}
+.gtop{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:26px}
+.gnote{font:600 13px "Bricolage Grotesque",sans-serif;color:var(--mute);padding:7px 14px;border-radius:999px;border:1px dashed var(--line)}
+.gmain{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(20px,4vw,48px);align-items:center}
+.gwheel{position:relative;aspect-ratio:1;max-width:340px;width:100%;margin:0 auto}
+.gwheel svg{width:100%;height:100%;filter:drop-shadow(0 18px 28px rgba(90,56,240,.35))}
+.gwheel circle.arc{transition:stroke-dasharray .9s cubic-bezier(.3,1.1,.4,1),stroke-dashoffset .9s cubic-bezier(.3,1.1,.4,1)}
+.gc{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:2px}
+.gc small{font:700 11.5px "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.gc b{font:800 clamp(46px,7vw,72px)/1 "Bricolage Grotesque",sans-serif;background:linear-gradient(110deg,var(--b),var(--a) 60%,var(--d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gc em{font:700 15px "Bricolage Grotesque",sans-serif;font-style:normal;color:var(--b);min-height:1.3em}
+.gcards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gcd{position:relative;overflow:hidden;padding:18px 18px 16px;border-radius:24px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,transparent),color-mix(in srgb,var(--c) 5%,transparent));transition:transform .3s,box-shadow .3s}
+.gcd:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 26px 40px -24px var(--c)}
+.gcd:before{content:"";position:absolute;width:120px;height:120px;right:-40px;top:-40px;border-radius:50%;background:var(--c);opacity:.22;filter:blur(24px)}
+.ghd{display:flex;align-items:center;gap:12px;position:relative}
+.gbd{flex:none;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;color:#fff;font-size:26px;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c) 55%,color-mix(in srgb,var(--c) 70%,#000));box-shadow:inset 0 2px 0 rgba(255,255,255,.45),0 12px 20px -10px var(--c)}
+.gnm{font:700 14.5px/1.2 "Bricolage Grotesque",sans-serif}
+.ghr{display:flex;align-items:baseline;gap:8px;margin:12px 0 10px;position:relative}
+.ghr b{font:800 clamp(34px,4.4vw,46px)/1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.ghr i{font:700 13px "Bricolage Grotesque",sans-serif;font-style:normal;padding:3px 9px;border-radius:99px;background:var(--c);color:#fff}
+.gmi{display:flex;flex-wrap:wrap;gap:4px;position:relative;min-height:26px}
+.gmi span{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:14px;background:var(--c);animation:pop .5s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--k)*40ms)}
+.gpr{height:7px;border-radius:5px;background:var(--line);margin-top:12px;overflow:hidden;position:relative}
+.gpr u{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 60%,#fff));transition:width .9s cubic-bezier(.3,1.1,.4,1)}
+@keyframes pop{from{transform:scale(0) rotate(-40deg);opacity:0}}
+.gwheel circle.arc{animation:draw 1s cubic-bezier(.3,1.1,.4,1) both}@keyframes draw{from{stroke-dasharray:0 478}}
+.pic.glass,.wf{background:radial-gradient(420px circle at 0% 0%,rgba(109,74,255,.16),transparent 60%),radial-gradient(420px circle at 100% 100%,rgba(255,92,138,.14),transparent 60%),var(--glass)}
+.dn svg{filter:drop-shadow(0 10px 16px rgba(201,48,126,.4))}
+.wp.on{filter:drop-shadow(0 3px 5px color-mix(in srgb,var(--col) 55%,transparent))}
+.wft b{background:linear-gradient(100deg,var(--a),var(--dd));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:860px){.gmain{grid-template-columns:1fr}.gcards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.gcards{grid-template-columns:1fr}}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:0}.scene{height:380px}.layer{width:210px;height:210px;margin:-105px 0 0 -105px}.levers,.tests{grid-template-columns:1fr}.rhythm{grid-template-columns:1fr 1fr;row-gap:30px}.rhythm:before{display:none}.row{grid-template-columns:1fr}nav a:not(.go){display:none}.pbar{bottom:10px}.tiles{gap:6px}
+ .rg,.bd,.lad{grid-template-columns:1fr}.r1,.r2,.r3{min-height:0}.names{grid-template-columns:1fr}}
+@media(max-width:640px){.mx{grid-template-columns:22px 1fr 1fr}.q{padding:12px;min-height:190px}.q h4{font-size:19px}.q p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.rhythm:before{transform:none}}
+
+/* ---- slide 05 + 07 polish ---- */
+.map .n rect{fill:color-mix(in srgb,var(--nc) 16%,var(--bg));stroke:var(--nc);stroke-width:2}
+.map .n{transition:transform .3s;transform-box:fill-box;transform-origin:center}.map .n:hover{transform:scale(1.08)}
+.map .ln{stroke:var(--line);stroke-width:2.5}
+.map .ai rect{fill:rgba(0,179,155,.2);stroke:var(--b)}
+.map .ailn{animation:dsh 1.1s linear infinite}@keyframes dsh{to{stroke-dashoffset:-22}}
+.map .you{fill:url(#yg);filter:drop-shadow(0 8px 14px rgba(90,56,240,.5))}
+.map .halo{fill:none;stroke:var(--a);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:hl 2.4s ease-out infinite}
+@keyframes hl{from{opacity:.7;transform:scale(1)}to{opacity:0;transform:scale(1.7)}}
+.mv{display:flex;gap:16px;align-items:center;border-left:5px solid var(--mc);transition:transform .3s,box-shadow .3s}
+.mv:hover{transform:translateX(8px);box-shadow:0 18px 34px -22px var(--mc)}
+.mn{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font:800 20px "Bricolage Grotesque",sans-serif;font-style:normal;color:#fff;background:var(--mc);box-shadow:0 10px 18px -8px var(--mc)}
+.risk{position:relative;overflow:hidden}.risk:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-70px;top:-110px;background:#ff5c8a;filter:blur(50px);opacity:.45}
+.risk>*{position:relative;z-index:1}
+.rk{display:inline-block;margin-bottom:10px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.16);font:700 12px "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.rl{display:inline-block;padding:2px 12px;border-radius:10px;background:#fff;color:#2f2398}
+.test{border-color:color-mix(in srgb,var(--col) 45%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--col) 20%,transparent),color-mix(in srgb,var(--col) 4%,transparent));align-items:center}
+.test .ring{width:96px;height:96px;box-shadow:0 14px 26px -12px var(--col)}.test .ring:before{inset:8px}
+.pct{display:block;margin-bottom:4px;font:700 11.5px "Bricolage Grotesque",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--col)}
+.test:hover{box-shadow:0 24px 40px -24px var(--col)}
+.wf .wft b{background:linear-gradient(100deg,var(--col,var(--a)),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wf .wfg{padding:6px 0}
+@media(max-width:760px){.rg,.tests{grid-template-columns:1fr}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M9 12h6M9 16h6"/></symbol>
+<symbol id="blocks" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></symbol>
+<symbol id="people" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M2.5 20c0-3.6 2.4-6 5.5-6s5.5 2.4 5.5 6M14.5 14.4c.8-.3 1.6-.4 2.5-.4 2.6 0 4.5 2 4.5 5"/></symbol>
+<symbol id="lens" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+<symbol id="spark" viewBox="0 0 24 24"><path d="M12 2.5l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/><path d="M19 3v4M17 5h4"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20.5S3 15 3 8.8A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 9 1.8C21 15 12 20.5 12 20.5z"/></symbol>
+<symbol id="grow" viewBox="0 0 24 24"><path d="M3 20h18M6 20v-5M12 20V9M18 20V4"/><path d="M4 9l5-4 3 3 6-5"/></symbol>
+<symbol id="key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.4 6.4 20.3l1.1-6.2L3 9.7l6.2-.9z"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+<symbol id="loop" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></symbol>
+<symbol id="full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+<symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8z"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+</defs></svg>
+<div class="pbar" id="pbar" hidden><button type="button" id="prv" aria-label="Previous slide">&#8592;</button><span id="cnt"></span><button type="button" id="nxt" aria-label="Next slide">&#8594;</button><div class="dots" id="dots"></div><button type="button" class="sm" id="ovb" aria-label="Slide overview" title="Overview (O)">&#9638;</button><button type="button" class="sm" id="lsb" aria-label="Laser pointer" title="Laser pointer (L)">&#9678;</button></div>
+<div class="progress" id="pg" aria-hidden="true"></div>
+<div class="glow" id="glow" aria-hidden="true"></div><canvas id="cf" aria-hidden="true"></canvas><div class="laser" id="las"></div><div class="tip" id="tip"></div><div class="ov" id="ov" hidden></div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="wrap">
+<nav><b><svg class="ic" style="font-size:26px;color:var(--at)"><use href="#spark"/></svg>Slide Forge AI by KK Solutions</b><div class="links"><a role="button" tabindex="0" data-go="levers">Levers</a><a role="button" tabindex="0" data-go="shift">Tasks</a><a role="button" tabindex="0" data-go="relationships">People</a><a role="button" tabindex="0" data-go="thinking">Thinking</a><a role="button" tabindex="0" data-go="rhythm">Roadmap</a><a class="go" role="button" tabindex="0" data-go="audit">Start audit</a><a class="go" role="button" tabindex="0" id="pptb" style="background:linear-gradient(120deg,var(--b),var(--a))">&#9654; PPT mode</a><button class="tg" id="fs" type="button" aria-label="Toggle full screen"><svg class="ic"><use href="#full"/></svg></button><button class="tg" id="tg" type="button" aria-label="Switch between light and dark theme"><svg class="ic"><use href="#moon"/></svg></button></div></nav>
+
+<div class="hero slide">
+ <div>
+  <p class="kick"><i></i>Management consulting</p>
+  <h1>Craft work that stays <span class="grad">meaningful</span> beside AI.</h1>
+  <p class="lede">How can employees redesign their tasks, relationships and thinking when AI changes professional work? Job crafting gives three levers, one for each speaker.</p>
+  <a class="btn" role="button" tabindex="0" data-go="audit">Audit your tasks</a> <a class="btn alt" role="button" tabindex="0" data-go="shift">Play with the shift</a>
+  <div class="chips"><span><b>3</b> speakers</span><span><b>3</b> levers</span></div>
+  <fieldset class="names" aria-label="Presenter names">
+   <label>Tasks<input id="nmA" type="text" value="Jitesh Pani" maxlength="40" autocomplete="off"></label>
+   <label>Relationships<input id="nmB" type="text" value="Lakshya Raj Singh Mehta" maxlength="40" autocomplete="off"></label>
+   <label>Thinking<input id="nmC" type="text" value="Aman Khapre" maxlength="40" autocomplete="off"></label>
+  </fieldset>
+ </div>
+ <div class="scene" id="scene" role="img" aria-label="Three stacked layers: tasks, relationships, thinking">
+  <div class="stack">
+   <div class="layer l1"><svg class="ic"><use href="#blocks"/></svg><span>Tasks</span></div>
+   <div class="layer l2"><svg class="ic"><use href="#people"/></svg><span>Relationships</span></div>
+   <div class="layer l3"><svg class="ic"><use href="#lens"/></svg><span>Thinking</span></div>
+  </div>
+  <div class="hint">Move your pointer over the stack</div>
+ </div>
+</div>
+
+<div class="mq" aria-hidden="true"><div class="track" id="trk"><span>Task crafting</span><span>Relational crafting</span><span>Cognitive crafting</span><span>Human judgment</span><span>Meaningful work</span><span>AI as a teammate</span></div></div>
+
+<section class="slide" id="glance">
+ <p class="eb rv">Infographic &middot; the week in 20 blocks</p>
+ <h2 class="rv">Where your 40 hours go, before and after crafting</h2>
+ <p class="intro rv">One icon is two hours. Switch the view to see how the same week shifts once you hand off routine work and reinvest the time. Illustrative, not a statistic.</p>
+ <div class="gpanel rv">
+  <div class="gtop"><div class="opts" id="glv" role="group" aria-label="View"><button type="button" data-v="0" aria-pressed="true">Today</button><button type="button" data-v="1" aria-pressed="false">After crafting</button></div><span class="gnote">1 icon = 2 hours &middot; illustrative</span></div>
+  <div class="gmain">
+   <div class="gwheel"><svg viewBox="0 0 200 200" id="gsvg" role="img" aria-label="Weekly time split"><defs id="gdefs"></defs><circle cx="100" cy="100" r="76" fill="none" stroke="var(--line)" stroke-width="22" opacity=".5"/><g id="garcs" transform="rotate(-90 100 100)"></g></svg>
+    <div class="gc"><small>Human-value hours</small><b id="ghv">18h</b><em id="gdelta"></em></div></div>
+   <div class="gcards" id="gcards"></div>
+  </div>
+ </div>
+ </section>
+
+<section class="slide" id="levers">
+ <p class="eb rv">01 &middot; Opening &middot; all three speakers</p>
+ <h2 class="rv">Organizations pick the AI. Employees shape how it changes their day.</h2>
+ <p class="intro rv">Job crafting (Wrzesniewski and Dutton, 2001) describes the self-initiated changes people make to the boundaries of their own jobs. Each lever takes a new shape in an AI-augmented consulting firm.</p>
+ <div class="poll rv"><b>Show of hands</b><span>AI already touches my daily work.</span><span>Keep it up if I had a say in how.</span></div>
+ <div class="levers">
+  <div class="card glass tilt rv"><div class="badge" style="background:linear-gradient(135deg,var(--a),#3b2bb5)"><svg class="ic"><use href="#blocks"/></svg></div><h3>Task crafting</h3><p class="tag">Change what you do &middot; <span data-sp="a">Jitesh Pani</span></p><p>Add, drop or reshape tasks so more time goes to your strengths.</p><p class="ai"><b>With AI:</b> it absorbs desk research, data cleaning and first-draft decks. You spend the hours on judgment and new questions.</p></div>
+  <div class="card glass tilt rv"><div class="badge" style="background:linear-gradient(135deg,#00957f,#006a85)"><svg class="ic"><use href="#people"/></svg></div><h3>Relational crafting</h3><p class="tag">Change who you work with &middot; <span data-sp="b">Lakshya Raj Singh Mehta</span></p><p>Choose the people you spend time with, so work stays human.</p><p class="ai"><b>With AI:</b> a new node joins your map. Use the time it saves to mentor, talk to clients and debate drafts together.</p></div>
+  <div class="card glass tilt rv"><div class="badge" style="background:linear-gradient(135deg,#e8800f,#c9307e)"><svg class="ic"><use href="#lens"/></svg></div><h3>Cognitive crafting</h3><p class="tag">Change how you see it &middot; <span data-sp="c">Aman Khapre</span></p><p>Reframe your role around its purpose, not its duty list.</p><p class="ai"><b>With AI:</b> move from &ldquo;I produce slides&rdquo; to &ldquo;I help leaders make better decisions.&rdquo;</p></div>
+ </div>
+</section>
+
+<section class="slide" id="shift">
+ <p class="eb rv">02 &middot; Tasks &middot; <span data-sp="a">Jitesh Pani</span></p>
+ <h2 class="rv">AI shifts the task mix, so audit it first</h2>
+ <p class="intro rv">Twenty tasks make up an example consultant&rsquo;s week. Drag the slider to hand more to AI and see what stays with you. Hand off too much without a plan and the role drifts toward proofreading machine output. This is an illustration, not a statistic.</p>
+ <div class="glass pic rv">
+  <label class="sans" for="sl" style="font-weight:700">Tasks handed to AI: <span id="n">8</span> of 20</label>
+  <div class="tiles" id="tiles"></div>
+  <input id="sl" type="range" min="0" max="20" value="8">
+  <div class="stats">
+   <div class="stat"><b id="sAi" style="color:#d9570a">8</b><span>handled by AI</span></div>
+   <div class="stat"><b id="sYou" style="color:var(--at)">12</b><span>stay with you</span></div>
+   <div class="stat"><b id="sFree" style="color:var(--b)">16h</b><span>freed (about 2h each)</span></div>
+  </div>
+  <div class="dn"><svg viewBox="0 0 120 120" role="img" aria-label="Share of tasks handled by AI"><circle cx="60" cy="60" r="48" fill="none" stroke="var(--line)" stroke-width="16"/><circle id="dnc" cx="60" cy="60" r="48" fill="none" stroke="url(#dg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0 302" transform="rotate(-90 60 60)" style="transition:stroke-dasharray .5s"/><defs><linearGradient id="dg"><stop offset="0" stop-color="#e8800f"/><stop offset="1" stop-color="#c9307e"/></linearGradient></defs><text id="dnt" x="60" y="68" text-anchor="middle" font-size="26" font-weight="800" fill="currentColor" font-family="Bricolage Grotesque,sans-serif">40%</text></svg><p><b>Share of your week handled by AI</b><br>The rest is yours to redesign.</p></div>
+  <p id="verdict" aria-live="polite"></p>
+ </div>
+</section>
+
+<section class="slide" id="matrix">
+ <p class="eb rv">03 &middot; Tasks &middot; the 2&times;2</p>
+ <h2 class="rv">A 2&times;2 decides where the human line sits</h2>
+ <p class="intro rv">Rate each task on automation potential and on the value of human judgment. Grey chips are examples. Add your own to see where they land.</p>
+ <div class="mx rv" id="mx">
+  <div class="mxy"><span>High</span><span>Human judgment value</span><span>Low</span></div>
+  <div class="q qo"><div><small>Low automation &middot; high judgment</small><h4>Own</h4></div><p>Client trust, ethical calls, recommendations under uncertainty. Keep these human.</p><div class="pl" id="q-own"></div></div>
+  <div class="q qa"><div><small>High automation &middot; high judgment</small><h4>Augment</h4></div><p>AI drafts. You validate and interpret.</p><div class="pl" id="q-aug"></div></div>
+  <div class="q qe"><div><small>Low automation &middot; low judgment</small><h4>Eliminate or redesign</h4></div><p>Tasks that were never worth doing.</p><div class="pl" id="q-elim"></div></div>
+  <div class="q qd"><div><small>High automation &middot; low judgment</small><h4>Delegate</h4></div><p>Repetitive, rules-based work that AI takes.</p><div class="pl" id="q-del"></div></div>
+  <div class="mxx"><span>Low</span><span>Automation potential</span><span>High</span></div>
+ </div>
+ <form class="add rv" style="margin:20px 0 0" onsubmit="return false">
+  <input id="pt" type="text" placeholder="One task from your week, e.g. Build the monthly report" aria-label="Your task" maxlength="60" autocomplete="off">
+  <select id="pq" aria-label="Quadrant"><option value="own">Own</option><option value="aug" selected>Augment</option><option value="del">Delegate</option><option value="elim">Eliminate or redesign</option></select>
+  <button class="btn" id="padd" type="button">Place task</button>
+ </form>
+ <p class="fine">Your chips are the colored ones. Select the &times; on one to remove it.</p>
+ <div class="sub"><h3>Crafting adds work, not just removes it</h3><p>Move the freed hours into these.</p></div>
+ <div class="adds"><span>Stress-test AI output</span><span>Design sharper questions</span><span>Run more scenarios</span><span>Write AI-use playbooks for the team</span></div>
+ <p class="rule">Choose where the human line sits. Do not defend tasks or surrender them.</p>
+</section>
+
+<section class="slide" id="audit">
+ <p class="eb rv">04 &middot; Tasks &middot; the audit</p>
+ <h2 class="rv">Task audit: sort your own week</h2>
+ <p class="intro rv">List what fills your week, then choose what happens to each task. Your plan builds as you go, and nothing leaves this page.</p>
+ <div class="glass tool rv">
+  <form class="add" onsubmit="return false"><input id="newTask" type="text" placeholder="Add a task, e.g. Write weekly status update" aria-label="New task"><button class="btn" id="addBtn" type="button">Add task</button></form>
+  <div id="rows"></div><div class="plan" id="plan"></div>
+  <p style="margin:16px 0 0"><button class="btn alt" id="copyBtn" type="button">Copy my plan</button> <span id="copied" class="sans" role="status" style="margin-left:8px;color:var(--mute)"></span></p>
+ </div>
+</section>
+
+<section class="slide" id="relationships">
+ <p class="eb rv">05 &middot; Relationships &middot; <span data-sp="b">Lakshya Raj Singh Mehta</span></p>
+ <h2 class="rv">Relational crafting changes who we work with, and how</h2>
+ <p class="intro rv">Meaningful-work research (Rosso, Dekas and Wrzesniewski, 2010) names relationships and contribution to others as core sources of meaning. The question is where AI sits on your map.</p>
+ <div class="rg">
+  <div class="glass pic rv">
+   <svg class="map" viewBox="0 0 560 320" role="img" aria-label="Stakeholder map with you at the centre, linked to clients, managers, peers and juniors, plus a new AI system node">
+    <defs><radialGradient id="yg" cx="35%" cy="30%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#4a2fd0"/></radialGradient></defs>
+    <line class="ln" x1="280" y1="150" x2="280" y2="58"/><line class="ln" x1="280" y1="150" x2="95" y2="88"/><line class="ln" x1="280" y1="150" x2="85" y2="218"/><line class="ln" x1="280" y1="150" x2="475" y2="118"/><line class="ailn" x1="280" y1="150" x2="400" y2="262"/>
+    <g class="n" style="--nc:#6d4aff"><rect x="220" y="40" width="120" height="36" rx="18"/><text x="280" y="58">Clients</text></g>
+    <g class="n" style="--nc:#00b39b"><rect x="35" y="70" width="120" height="36" rx="18"/><text x="95" y="88">Managers</text></g>
+    <g class="n" style="--nc:#ffb020"><rect x="25" y="200" width="120" height="36" rx="18"/><text x="85" y="218">Peers</text></g>
+    <g class="n" style="--nc:#ff5c8a"><rect x="415" y="100" width="120" height="36" rx="18"/><text x="475" y="118">Juniors</text></g>
+    <g class="n ai"><rect x="325" y="242" width="150" height="40" rx="20"/><text x="400" y="262">&#10022; AI system (new)</text></g>
+    <circle class="halo" cx="280" cy="150" r="38"/><circle class="you" cx="280" cy="150" r="38"/><text class="youtx" x="280" y="150">You</text>
+    <text class="cap" x="190" y="306">Briefs in, drafts out. Accountability stays with you.</text>
+   </svg>
+  </div>
+  <div class="rv">
+   <div class="mv glass" style="--mc:var(--a)"><i class="mn">1</i><div><b>Reinvest freed time in people</b><span>Hours saved on drafting go to client conversations, mentoring and cross-team work.</span></div></div>
+   <div class="mv glass" style="--mc:var(--b)"><i class="mn">2</i><div><b>Define the AI relationship</b><span>Treat it as a capable but unaccountable junior analyst. Write clear briefs and verify the output.</span></div></div>
+   <div class="mv glass" style="--mc:var(--c)"><i class="mn">3</i><div><b>Build peer learning networks</b><span>Share prompts, failures and good practice so adoption is collective.</span></div></div>
+  </div>
+ </div>
+ <div class="sub"><h3>Who should deliver it?</h3><p>Choose for each case, then compare with the rule.</p></div>
+ <div class="glass tool rv"><div id="sc"></div><p class="score" id="score" aria-live="polite"></p></div>
+ <div class="risk rv"><span class="rk">&#9888; The risk</span><h3>AI crowds out learning between people.</h3><p>When AI answers every question, juniors lose the chance to learn beside a senior. The safeguard is one rule: <b class="rl">AI drafts, humans debate.</b> Every major AI output gets one human review conversation before it reaches a client.</p></div>
+</section>
+
+<section class="slide" id="thinking">
+ <p class="eb rv">06 &middot; Thinking &middot; <span data-sp="c">Aman Khapre</span></p>
+ <h2 class="rv">Cognitive crafting changes the meaning of work, not the work itself</h2>
+ <p class="intro rv">Your task list and calendar stay as they are. What changes is how you see the purpose of the job.</p>
+ <div class="glass pic rv">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center"><span class="eb" style="margin:0">Same Monday, same facts</span>
+   <div class="opts" id="frsg" role="group" aria-label="Framing"><button type="button" data-f="0" aria-pressed="true">Framing A</button><button type="button" data-f="1" aria-pressed="false">Framing B</button></div></div>
+  <p class="fq" id="fq" aria-live="polite"></p>
+  <p class="fx" id="fnext"></p>
+  <p class="fine">The facts in both versions: AI now produces first-draft analysis in minutes.</p>
+ </div>
+ <div class="sub"><h3>The reframe ladder</h3><p>The higher the rung, the more durable the meaning.</p></div>
+ <div class="lad rv">
+  <div class="rung r1"><small>Rung 1 &middot; Task</small><p>&ldquo;I analyse data.&rdquo;</p><span>Easy to automate, so easy to lose.</span></div>
+  <div class="rung r2"><small>Rung 2 &middot; Impact</small><p>&ldquo;My analysis helps a client avoid a costly mistake.&rdquo;</p><span>Ties the task to a result for someone.</span></div>
+  <div class="rung r3"><small>Rung 3 &middot; Purpose</small><p>&ldquo;I help organizations make better-informed decisions.&rdquo;</p><span>Survives changes to individual tasks.</span></div>
+ </div>
+ <div class="sub"><h3>Write your own line</h3><p>Finish the sentence, or start from an example.</p></div>
+ <div class="bd rv">
+  <div class="glass pic fl">
+   <label for="b1">I am not just someone who&hellip;<input id="b1" type="text" value="builds financial models" maxlength="60" autocomplete="off"></label>
+   <label for="b2">I am someone who&hellip;<input id="b2" type="text" value="helps leaders back the right decision" maxlength="70" autocomplete="off"></label>
+   <div class="exs" id="ex"></div>
+  </div>
+  <div class="stmt"><b>My reframe</b><p id="stmt"></p></div>
+ </div>
+ <div class="honest rv"><p><b class="sans">Reframing must be honest.</b></p><p>It is not denial. Some tasks and some roles will shrink. Say so, then ask what new value you can build. This is where consultants help clients most: guiding employees through the redesign, not only the tool rollout.</p></div>
+</section>
+
+<section class="slide" id="meaning">
+ <p class="eb rv">07 &middot; The tests</p>
+ <h2 class="rv">Four tests for meaningful work</h2>
+ <p class="intro rv">Ask these before handing a task to AI or taking one on. Rings show how strongly each is usually felt in work people call meaningful (illustrative).</p>
+ <div class="tests">
+  <div class="test glass rv" style="--col:var(--d)"><div class="ring" style="--col:var(--d)" data-p="86"><svg class="ic" style="font-size:30px"><use href="#heart"/></svg></div><div><small class="pct">86 / 100 feel it strongly</small><h3>Who does this help?</h3><p>Keep one task a week where you see the effect on a real person.</p></div></div>
+  <div class="test glass rv" style="--col:var(--b)"><div class="ring" style="--col:var(--b)" data-p="74"><svg class="ic" style="font-size:30px"><use href="#grow"/></svg></div><div><small class="pct">74 / 100 feel it strongly</small><h3>What am I getting better at?</h3><p>Keep one task that is hard on purpose, so your skills keep growing.</p></div></div>
+  <div class="test glass rv" style="--col:var(--a)"><div class="ring" style="--col:var(--a)" data-p="68"><svg class="ic" style="font-size:30px"><use href="#key"/></svg></div><div><small class="pct">68 / 100 feel it strongly</small><h3>Can I explain the reasoning?</h3><p>If you cannot say why an AI result is right, you do not own it yet.</p></div></div>
+  <div class="test glass rv" style="--col:var(--c)"><div class="ring" style="--col:var(--c)" data-p="80"><svg class="ic" style="font-size:30px"><use href="#star"/></svg></div><div><small class="pct">80 / 100 feel it strongly</small><h3>Would I put my name on it?</h3><p>If the output makes you shrug, add your own pass until it does not.</p></div></div>
+ </div>
+
+ <div class="gpanel wf rv"><div class="wft"><b id="wfh"></b><span id="wfs"></span></div><div class="wfg" id="wfg"></div><p class="fine">Select a test above to see it as 100 people. Illustrative.</p></div>
+</section>
+
+<section class="slide" id="rhythm">
+ <p class="eb rv">08 &middot; Recommendations &middot; all three speakers</p>
+ <h2 class="rv">Enable crafting, do not just deploy AI</h2>
+ <p class="intro rv">Give people permission, time and a framework. A 90-day plan, one stage per speaker, then measurement.</p>
+ <ol class="rhythm rv">
+  <li><div class="dot" style="background:var(--a)"><svg class="ic"><use href="#blocks"/></svg></div><b>Days 1&ndash;30</b><span><span data-sp="a">Jitesh Pani</span>: run the task audit and the 2&times;2 workshop for each team.</span></li>
+  <li><div class="dot" style="background:#00957f"><svg class="ic"><use href="#people"/></svg></div><b>Days 31&ndash;60</b><span><span data-sp="b">Lakshya Raj Singh Mehta</span>: set up peer learning forums and the &ldquo;AI drafts, humans debate&rdquo; norm.</span></li>
+  <li><div class="dot" style="background:#e8800f"><svg class="ic"><use href="#lens"/></svg></div><b>Days 61&ndash;90</b><span><span data-sp="c">Aman Khapre</span>: build purpose reframing into performance talks and manager coaching.</span></li>
+  <li><div class="dot" style="background:var(--dd)"><svg class="ic"><use href="#grow"/></svg></div><b>Measure</b><span>Set targets after a baseline reading, then review each quarter.</span></li>
+ </ol>
+ <div class="sub"><h3>How we would know it is working</h3></div>
+ <div class="tbl rv"><table>
+  <thead><tr><th>Indicator</th><th>What to track</th><th>Suggested source</th></tr></thead>
+  <tbody>
+   <tr><td>Meaningfulness and engagement</td><td>Employee-reported scores on a short recurring pulse</td><td>Pulse survey</td></tr>
+   <tr><td>Time on high-judgment work</td><td>Share of the week spent in Own and Augment tasks</td><td>Sampled time logs after the task audit</td></tr>
+   <tr><td>AI-output error catch rate</td><td>Errors caught before they reach a client</td><td>Review logs under the debate rule</td></tr>
+   <tr><td>Junior-staff learning</td><td>Skills signed off and questions put to seniors</td><td>Mentoring check-ins</td></tr>
+  </tbody></table></div>
+ <div class="qna">
+  <details><summary>Does job crafting protect jobs?</summary><p>No. It does not guarantee a role. It gives employees agency over how their role evolves and makes their contribution easier to see.</p></details>
+  <details><summary>What if the AI output is wrong?</summary><p>That is why the rule is AI drafts, humans debate. Ask whether you can explain why the result is right. If you cannot, you do not own it yet.</p></details>
+  <details><summary>Where does an employee start without a mandate?</summary><p>Inside their own scope. Audit your own week, try one change for two weeks, tell your manager what you changed and why, then review it.</p></details>
+ </div>
+ <div class="src"><h3>Sources</h3><ul>
+  <li>Wrzesniewski, A. and Dutton, J. E. (2001). Crafting a job. Academy of Management Review.</li>
+  <li>Rosso, B. D., Dekas, K. H. and Wrzesniewski, A. (2010). On the meaning of work. Research in Organizational Behavior.</li>
+  <li>Tims, M., Bakker, A. B. and Derks, D. (2012). Development and validation of the job crafting scale. Journal of Vocational Behavior.</li>
+ </ul><p style="margin:8px 0 0">Check each citation against the original before presenting.</p></div>
+</section>
+
+<div class="cta rv slide"><h2>Try the 24-hour challenge.</h2><p>Before you sleep tonight, pick one task to hand off, one person to reconnect with and one sentence to reframe.</p><a class="btn" role="button" tabindex="0" data-go="audit">Open the task audit</a></div>
+<footer>Slide Forge AI is a self-guided tool, not career advice. Figures are illustrative. Your entries stay in this browser and are not sent anywhere.<br><b>Developed by KK Solutions</b></footer>
+</div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},R=document.documentElement;
+function ring(r){if(!r||r.dataset.d)return;r.dataset.d=1;var t=+r.dataset.p,p=0,s=setInterval(function(){p+=3;if(p>=t){p=t;clearInterval(s)}r.style.setProperty('--p',p)},16)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');var r=e.target.querySelector('.ring');if(r)ring(r);io.unobserve(e.target)}})},{threshold:.18});
+document.querySelectorAll('.rv').forEach(function(x){io.observe(x)});
+/* marquee, progress, theme */
+var tk=$('trk');tk.innerHTML+=tk.innerHTML;
+function sp(){var h=R.scrollHeight-innerHeight;$('pg').style.setProperty('--sp',h>0?Math.min(1,scrollY/h):0)}
+addEventListener('scroll',sp,{passive:true});sp();
+$('tg').onclick=function(){var dark=R.dataset.theme?R.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;R.dataset.theme=dark?'light':'dark'};
+/* hero 3D tilt */
+var sc=$('scene');
+sc.addEventListener('pointermove',function(e){var b=sc.getBoundingClientRect();sc.style.setProperty('--rx',((e.clientX-b.left)/b.width-.5)*40+'deg');sc.style.setProperty('--ry',((e.clientY-b.top)/b.height-.5)*-24+'deg')});
+sc.addEventListener('pointerleave',function(){sc.style.setProperty('--rx','0deg');sc.style.setProperty('--ry','0deg')});
+/* card tilt and spotlight */
+document.querySelectorAll('.tilt').forEach(function(c){
+ c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width,y=(e.clientY-b.top)/b.height;c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');c.style.transform='rotateY('+(x-.5)*14+'deg) rotateX('+(.5-y)*14+'deg)'});
+ c.addEventListener('pointerleave',function(){c.style.transform=''});
+});
+/* pictogram */
+var tiles=$('tiles'),sl=$('sl');
+for(var i=0;i<20;i++){var t=document.createElement('div');t.className='tile';t.innerHTML='<svg class="ic"><use href="#doc"/></svg>';tiles.appendChild(t)}
+function shift(){
+ var n=+sl.value,ts=tiles.children;
+ for(var i=0;i<20;i++){ts[i].classList.toggle('ai',i<n);ts[i].firstChild.firstChild.setAttribute('href',i<n?'#spark':'#doc')}
+ $('n').textContent=n;$('sAi').textContent=n;$('sYou').textContent=20-n;$('sFree').textContent=n*2+'h';
+ $('verdict').textContent=n<5?'Plenty of routine is still on your plate. Look for drafts and summaries AI could take.':n<=12?'A healthy split. You keep judgment and relationships, and you gain time. Spend it on work that grows you.':'Most of the week is handled by AI. Check that you still keep tasks that build skill and connect you to people.';
+}
+sl.addEventListener('input',shift);shift();
+/* audit */
+var tasks=[{t:'Summarize interview notes'},{t:'Mentor a junior analyst'},{t:'Build the market model'},{t:'Present recommendations to the client'}];
+var rows=$('rows'),plan=$('plan'),L={keep:'Keep it mine',ai:'Hand to AI',shape:'Reshape'};
+var A={keep:function(t){return 'Protect time for “'+t+'” and say why it stays with you.'},ai:function(t){return 'Let AI draft “'+t+'”. Define what good looks like first, then review every output.'},shape:function(t){return 'Split “'+t+'”: AI does the prep, you own the judgment or the conversation.'}};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function render(){
+ rows.innerHTML='';
+ tasks.forEach(function(k,i){
+  var r=document.createElement('div');r.className='row';
+  var t=document.createElement('div');t.textContent=k.t;
+  var o=document.createElement('div');o.className='opts';
+  ['keep','ai','shape'].forEach(function(m){var b=document.createElement('button');b.type='button';b.textContent=L[m];b.setAttribute('aria-pressed',k.m===m);b.onclick=function(){k.m=k.m===m?null:m;render()};o.appendChild(b)});
+  var x=document.createElement('button');x.type='button';x.className='x';x.textContent='Remove';x.setAttribute('aria-label','Remove '+k.t);x.onclick=function(){tasks.splice(i,1);render()};
+  o.appendChild(x);r.appendChild(t);r.appendChild(o);rows.appendChild(r)});
+ var c={keep:0,ai:0,shape:0},s=tasks.filter(function(k){return k.m});s.forEach(function(k){c[k.m]++});
+ var n=s.length,h='<h3>Your crafting plan</h3>';
+ if(!n)h+='<p style="margin:0">Sort at least one task to see your plan.</p>';
+ else{var p=function(v){return Math.round(v/n*100)};
+  h+='<div class="bar" aria-hidden="true"><i style="width:'+p(c.keep)+'%;background:var(--a)"></i><i style="width:'+p(c.shape)+'%;background:var(--b)"></i><i style="width:'+p(c.ai)+'%;background:var(--c)"></i></div><p class="sans" style="margin:0">'+c.keep+' kept, '+c.shape+' reshaped, '+c.ai+' handed to AI</p><ul>';
+  s.forEach(function(k){h+='<li>'+A[k.m](esc(k.t))+'</li>'});h+='</ul>';
+  var nt=c.keep===0?'Nothing is marked as yours. Keep at least one task that shows you the person you help.':c.ai===n?'Everything is going to AI. Which task would you miss doing? Keep that one.':c.ai===0?'Nothing is handed off. Could AI take a draining routine task?':'A balanced split. Try it for two weeks, then check what changed.';
+  h+='<p style="margin:12px 0 0"><b>Check:</b> '+nt+'</p>'}
+ plan.innerHTML=h}
+function add(){var i=$('newTask'),v=i.value.trim();if(!v){i.focus();return}tasks.push({t:v});i.value='';render()}
+$('addBtn').onclick=add;
+$('newTask').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add()}});
+$('copyBtn').onclick=function(){var m=$('copied'),s=tasks.filter(function(k){return k.m}).map(function(k){return '- '+A[k.m](k.t)}).join('\n');if(!s){m.textContent='Sort a task first.';return}
+ try{navigator.clipboard.writeText('My crafting plan\n'+s).then(function(){m.textContent='Copied.'},function(){m.textContent='Copy blocked. Select the plan text instead.'})}catch(e){m.textContent='Copy blocked. Select the plan text instead.'}};
+render();
+
+/* presenter names */
+var names={a:'Jitesh Pani',b:'Lakshya Raj Singh Mehta',c:'Aman Khapre'};
+function applyNames(){['a','b','c'].forEach(function(k){Array.prototype.forEach.call(document.querySelectorAll('[data-sp="'+k+'"]'),function(el){el.textContent=names[k]})})}
+[['a','nmA'],['b','nmB'],['c','nmC']].forEach(function(p){
+ $(p[1]).addEventListener('input',function(){names[p[0]]=this.value.trim()||('Speaker '+p[0].toUpperCase());applyNames()});
+});
+
+/* 2x2 */
+var seeds={own:['Client trust conversations','Ethical calls','Recommendations under uncertainty'],aug:['Market sizing','Scenario modelling'],del:['Data cleaning','Transcription','Slide formatting'],elim:['Reports nobody opens']};
+var mine=[{t:'Build the monthly report',q:'aug'},{t:'Mentor a junior analyst',q:'own'}];
+function renderMx(){
+ Object.keys(seeds).forEach(function(q){
+  var h=seeds[q].map(function(t){return '<span>'+esc(t)+'</span>'}).join('');
+  mine.forEach(function(m,i){if(m.q===q)h+='<span class="me">'+esc(m.t)+'<button type="button" data-i="'+i+'" aria-label="Remove '+esc(m.t)+'">&times;</button></span>'});
+  $('q-'+q).innerHTML=h;
+ });
+ Array.prototype.forEach.call(document.querySelectorAll('#mx .me button'),function(b){b.onclick=function(){mine.splice(+b.getAttribute('data-i'),1);renderMx()}});
+}
+function addMx(){var i=$('pt'),v=i.value.trim();if(!v){i.focus();return}mine.push({t:v,q:$('pq').value});i.value='';renderMx()}
+$('padd').onclick=addMx;
+$('pt').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();addMx()}});
+renderMx();
+
+/* who should deliver it */
+var OPT=['AI alone','AI drafts, humans debate','Human leads'];
+var SC=[
+ {q:'Summarize a 50-page internal report',a:0,w:'Internal and low risk. AI can do it alone, with a spot-check of the key figures.'},
+ {q:'Format a deck to the firm template',a:0,w:'Rules-based work with a clear standard. Delegate it.'},
+ {q:'Build a market-sizing model for a client',a:1,w:'High automation, high judgment. AI drafts, then a human debates the assumptions before it ships.'},
+ {q:'Coach a junior who missed a deadline',a:2,w:'This is a relationship moment. A human leads.'},
+ {q:'Tell a client their project is being cancelled',a:2,w:'Relationally sensitive work stays with a person.'}
+];
+var ans=SC.map(function(){return null});
+function renderSc(){
+ var h='';
+ SC.forEach(function(s,i){
+  h+='<div class="sci"><p class="scq" style="margin:0">'+esc(s.q)+'</p><div class="opts" role="group" aria-label="'+esc(s.q)+'">';
+  OPT.forEach(function(o,k){h+='<button type="button" data-i="'+i+'" data-k="'+k+'" aria-pressed="'+(ans[i]===k)+'">'+o+'</button>'});
+  h+='</div><p class="scf">';
+  if(ans[i]!==null){h+=(ans[i]===s.a?'<b>Matches the rule.</b> ':'<b>Look again.</b> ')+esc(s.w)}
+  h+='</p></div>';
+ });
+ $('sc').innerHTML=h;
+ Array.prototype.forEach.call(document.querySelectorAll('#sc .opts button'),function(b){b.onclick=function(){ans[+b.getAttribute('data-i')]=+b.getAttribute('data-k');renderSc()}});
+ var done=ans.filter(function(a){return a!==null}).length,ok=ans.filter(function(a,i){return a===SC[i].a}).length;
+ $('score').textContent=done?(ok+' of '+SC.length+' match the rule'+(done<SC.length?' so far':'')+'.'):'';
+}
+renderSc();
+
+/* framing */
+var FR=[
+ {q:'“AI is taking over the part of my job I was good at.”',n:'Likely next move: defend the old task list.'},
+ {q:'“AI removes the routine so I can influence the decisions that matter.”',n:'Likely next move: shift time toward judgment and decisions.'}
+];
+function setFr(i){
+ $('fq').textContent=FR[i].q;$('fnext').textContent=FR[i].n;
+ Array.prototype.forEach.call(document.querySelectorAll('#frsg button'),function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-f')===i))});
+}
+Array.prototype.forEach.call(document.querySelectorAll('#frsg button'),function(b){b.onclick=function(){setFr(+b.getAttribute('data-f'))}});
+setFr(0);
+
+/* sentence builder */
+var EX=[['Financial modeler','builds financial models','helps leaders back the right decision'],['Status reporter','writes status reports','keeps a team pointed at the same goal'],['Data cleaner','cleans data','makes sure the numbers tell the truth']];
+function stmt(){var a=$('b1').value.trim()||'…',b=$('b2').value.trim()||'…';$('stmt').textContent='I am not just someone who '+a+'. I am someone who '+b+'.'}
+$('ex').innerHTML=EX.map(function(x,i){return '<button type="button" data-i="'+i+'">'+x[0]+'</button>'}).join('');
+Array.prototype.forEach.call(document.querySelectorAll('#ex button'),function(b){b.onclick=function(){var x=EX[+b.getAttribute('data-i')];$('b1').value=x[1];$('b2').value=x[2];stmt()}});
+$('b1').addEventListener('input',stmt);$('b2').addEventListener('input',stmt);
+stmt();
+
+/* ---- PPT mode + full screen ---- */
+var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,ppt=false;
+function show(n,noanim){
+ cur=Math.max(0,Math.min(slides.length-1,n));
+ slides.forEach(function(x,i){x.classList.toggle('cur',i===cur)});
+ var c=slides[cur];c.scrollTop=0;
+ c.querySelectorAll('.rv').forEach(function(x){x.classList.add('in')});if(c.classList.contains('rv'))c.classList.add('in');
+ c.querySelectorAll('.ring').forEach(ring);
+ $('cnt').textContent=(cur+1)+' / '+slides.length;
+ $('prv').disabled=cur===0;$('nxt').disabled=cur===slides.length-1;
+ $('pg').style.setProperty('--sp',cur/(slides.length-1));
+}
+function setPpt(on){
+ ppt=on;R.classList.toggle('ppt',on);$('pbar').hidden=!on;
+ $('pptb').innerHTML=on?'&#10005; Exit PPT':'&#9654; PPT mode';
+ if(on){var k=slides.findIndex(function(x){var r=x.getBoundingClientRect();return r.bottom>innerHeight*.4});show(k<0?0:k)}
+ else{slides.forEach(function(x){x.classList.remove('cur')});var t=slides[cur];t&&t.scrollIntoView();sp()}
+}
+function fsToggle(){
+ var d=document;
+ if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d)}
+ else{var e=R;try{var p=(e.requestFullscreen||e.webkitRequestFullscreen).call(e);if(p&&p.catch)p.catch(function(){})}catch(x){}}
+}
+function go(id){
+ var t=document.getElementById(id);if(!t)return;
+ if(ppt){var k=slides.indexOf(t);if(k>=0)show(k)}else t.scrollIntoView({behavior:'smooth'});
+}
+$('pptb').onclick=function(){var on=!ppt;setPpt(on);if(on&&!document.fullscreenElement)fsToggle()};
+$('fs').onclick=fsToggle;
+$('prv').onclick=function(){show(cur-1)};$('nxt').onclick=function(){show(cur+1)};
+document.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.getAttribute('data-go'))}});
+document.addEventListener('keydown',function(e){
+ var t=e.target,typing=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName);
+ if(e.key==='Enter'&&t.matches&&t.matches('[role=button]')){t.click();return}
+ if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
+ var k=e.key;
+ if(k==='p'||k==='P'){$('pptb').click();return}
+ if(k==='f'||k==='F'){fsToggle();return}
+ if(!ppt)return;
+ if(k==='ArrowRight'||k==='PageDown'||(k===' '&&t.tagName!=='BUTTON'&&t.tagName!=='SUMMARY')){e.preventDefault();show(cur+1)}
+ else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(cur-1)}
+ else if(k==='Home'){show(0)}else if(k==='End'){show(slides.length-1)}
+ else if(k==='Escape'&&!document.fullscreenElement){setPpt(false)}
+});
+var tx=null,ty=null;
+document.addEventListener('touchstart',function(e){if(ppt&&e.touches.length===1&&!e.target.closest('input,.pbar')){tx=e.touches[0].clientX;ty=e.touches[0].clientY}else tx=null},{passive:true});
+document.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)show(cur+(dx<0?1:-1))},{passive:true});
+document.addEventListener('wheel',function(e){
+ if(!ppt||e.target.closest('input,textarea'))return;
+ var c=slides[cur];if(c.scrollHeight>c.clientHeight+4)return;
+ if(wl)return;if(Math.abs(e.deltaY)>30){wl=1;setTimeout(function(){wl=0},700);show(cur+(e.deltaY>0?1:-1))}
+},{passive:true});var wl=0;
+document.addEventListener('fullscreenchange',function(){});
+
+/* ---- v3 interactions ---- */
+var gl=$('glow');
+addEventListener('pointermove',function(e){gl.style.setProperty('--gx',e.clientX+'px');gl.style.setProperty('--gy',e.clientY+'px');var l=$('las');l.style.left=e.clientX+'px';l.style.top=e.clientY+'px'},{passive:true});
+document.addEventListener('pointerdown',function(e){var b=e.target.closest('.btn,nav a,.opts button');if(!b)return;var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),p=document.createElement('span');p.className='rp';p.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';b.appendChild(p);setTimeout(function(){p.remove()},650)});
+/* rotating hero word */
+var gw=document.querySelector('h1 .grad'),WD=['meaningful','human','yours','future-proof'],wi=0;
+if(gw)setInterval(function(){gw.classList.add('out');setTimeout(function(){wi=(wi+1)%WD.length;gw.textContent=WD[wi];gw.classList.remove('out')},350)},2800);
+/* count-up chips */
+document.querySelectorAll('.chips b').forEach(function(b){var t=+b.textContent,n=0;if(!t)return;b.textContent=0;var s=setInterval(function(){n++;b.textContent=n;if(n>=t)clearInterval(s)},120)});
+/* staggered reveal in PPT */
+slides.forEach(function(sl){var k=sl.classList.contains('hero')||sl.classList.contains('cta')?sl.children:sl.children;[].forEach.call(k,function(c,i){c.classList.add('stg');c.style.setProperty('--i',i)})});
+/* dots, overview, timer */
+var dots=$('dots'),ov=$('ov');
+dots.innerHTML=slides.map(function(_,i){return '<i data-i="'+i+'"></i>'}).join('');
+dots.onclick=function(e){var i=e.target.getAttribute('data-i');if(i!==null)show(+i)};
+function ttl(x,i){var h=x.querySelector('h1,h2,.eb');return h?h.textContent.replace(/\s+/g,' ').trim():'Slide '+(i+1)}
+function openOv(on){ov.hidden=!on;if(on){ov.innerHTML='<h4>Overview</h4>'+slides.map(function(x,i){return '<button data-i="'+i+'" class="'+(i===cur?'on':'')+'"><small>'+(i+1<10?'0':'')+(i+1)+'</small>'+ttl(x,i)+'</button>'}).join('')}}
+ov.onclick=function(e){var b=e.target.closest('button');if(b){show(+b.getAttribute('data-i'));openOv(false)}else openOv(false)};
+$('ovb').onclick=function(){openOv(ov.hidden)};
+function tip(t){var e=$('tip');e.textContent=t;e.classList.add('on');setTimeout(function(){e.classList.remove('on')},2600)}
+function laser(){R.classList.toggle('las');tip(R.classList.contains('las')?'Laser on. Press L to turn off':'Laser off')}
+$('lsb').onclick=laser;
+var _show=show;show=function(n){_show(n);[].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===cur)});if(ppt&&cur===slides.length-1)boom();};
+var _sp=setPpt;setPpt=function(on){_sp(on);if(on){tip('Arrows: move · O: overview · L: laser · Esc: exit')}else{openOv(false);R.classList.remove('las')}};
+$('pptb').onclick=function(){var on=!ppt;setPpt(on);if(on&&!document.fullscreenElement)fsToggle()};
+document.addEventListener('keydown',function(e){if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)||e.ctrlKey||e.metaKey)return;if(!ppt)return;if(e.key==='o'||e.key==='O')openOv(ov.hidden);else if(e.key==='l'||e.key==='L')laser();else if(e.key==='Escape')openOv(false)});
+/* confetti */
+var cv=$('cf'),cx=cv.getContext('2d'),ps=[],raf;
+function boom(){cv.width=innerWidth;cv.height=innerHeight;var C=['#6d4aff','#00b39b','#ffb020','#ff5c8a','#c9307e'];for(var i=0;i<140;i++)ps.push({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,r:Math.random()*6+3,c:C[i%5],a:1});cancelAnimationFrame(raf);(function f(){cx.clearRect(0,0,cv.width,cv.height);ps=ps.filter(function(p){return p.a>0});ps.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.a-=.01;cx.globalAlpha=Math.max(p.a,0);cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.r,p.r*1.6)});if(ps.length)raf=requestAnimationFrame(f)})()}
+document.querySelectorAll('.cta .btn').forEach(function(b){b.addEventListener('click',boom)});
+document.addEventListener('click',function(e){if(e.target.closest('#sc .opts button')){var f=document.querySelectorAll('#score');}});
+
+/* ---- v4: pictographs + infographics ---- */
+var CAT=[['Routine production','#e8800f','doc'],['Judgment and decisions','#6d4aff','lens'],['People and clients','#00957f','people'],['New value work','#d6306e','spark']];
+var WK=[[11,4,3,2],[4,7,5,4]];
+var CC=['#e8800f','#6d4aff','#00957f','#d6306e'],C2=['#ffb020','#9d86ff','#2fd6bd','#ff7aa8'],CIR=477.5,gdone=0;
+function wk(v){
+ var d=WK[v],o=WK[0],defs='',arcs='',off=0,cards='';
+ d.forEach(function(n,c){
+  defs+='<linearGradient id="gg'+c+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+C2[c]+'"/><stop offset="1" stop-color="'+CC[c]+'"/></linearGradient>';
+  var len=n/20*CIR-5;
+  arcs+='<circle class="arc" cx="100" cy="100" r="76" fill="none" stroke="url(#gg'+c+')" stroke-width="22" stroke-linecap="round" stroke-dasharray="'+Math.max(len,0)+' '+CIR+'" stroke-dashoffset="'+(-off/20*CIR-2.5)+'"/>';
+  off+=n;
+  var dl=n-o[c],ic='';for(var i=0;i<n;i++)ic+='<span style="--k:'+i+'"><svg class="ic"><use href="#'+CAT[c][2]+'"/></svg></span>';
+  cards+='<div class="gcd" style="--c:'+CC[c]+'"><div class="ghd"><div class="gbd"><svg class="ic"><use href="#'+CAT[c][2]+'"/></svg></div><div class="gnm">'+CAT[c][0]+'</div></div><div class="ghr"><b>'+n*2+'h</b>'+(v&&dl?'<i>'+(dl>0?'+':'')+dl*2+'h</i>':'<i>'+n*5+'%</i>')+'</div><div class="gmi">'+ic+'</div><div class="gpr"><u style="width:'+n*5+'%"></u></div></div>';
+ });
+ $('gdefs').innerHTML=defs;$('garcs').innerHTML=arcs;$('gcards').innerHTML=cards;
+ var hv=(d[1]+d[2]+d[3])*2,h0=(o[1]+o[2]+o[3])*2;
+ $('ghv').textContent=hv+'h';$('gdelta').textContent=v?'+'+(hv-h0)+'h vs today':'your baseline week';
+ [].forEach.call(document.querySelectorAll('#glv button'),function(b){b.setAttribute('aria-pressed',String(+b.dataset.v===v))});
+}
+[].forEach.call(document.querySelectorAll('#glv button'),function(b){b.onclick=function(){wk(+b.dataset.v)}});wk(0);
+/* donut */
+function dn(){var n=+sl.value,c=301.6*n/20;$('dnc').setAttribute('stroke-dasharray',c+' 302');$('dnt').textContent=Math.round(n*5)+'%'}
+sl.addEventListener('input',dn);dn();
+/* waffle */
+var WT=['Who does this help?','What am I getting better at?','Can I explain the reasoning?','Would I put my name on it?'],wfg=$('wfg'),tests=document.querySelectorAll('.test');
+var wh='';for(var q=0;q<100;q++)wh+='<div class="wp" style="--k:'+q+'"><svg><use href="#person"/></svg></div>';wfg.innerHTML=wh;
+function wf(i){var t=tests[i],p=+t.querySelector('.ring').dataset.p,col=t.querySelector('.ring').style.getPropertyValue('--col');
+ wfg.style.setProperty('--col',col);[].forEach.call(wfg.children,function(e,k){e.classList.toggle('on',k<p)});
+ [].forEach.call(tests,function(x,j){x.classList.toggle('sel',j===i)});
+ $('wfh').textContent=p+' of 100';$('wfs').textContent='people feel "'+WT[i]+'" strongly in work they call meaningful.'}
+[].forEach.call(tests,function(t,i){t.tabIndex=0;t.onclick=function(){wf(i)};t.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();wf(i)}}});wf(0);
+})();
+</script>
+
+</body></html>
